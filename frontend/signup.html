@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup</title>
+</head>
+
+<body>
+
+<h2>Signup</h2>
+
+<input type="text" id="name" placeholder="Name"><br><br>
+
+<input type="email" id="email" placeholder="Email"><br><br>
+
+<input type="password" id="password" placeholder="Password"><br><br>
+
+<select id="role">
+<option value="customer">Customer</option>
+<option value="influencer">Influencer</option>
+</select><br><br>
+
+<input type="number" id="price" placeholder="Price per hour (only for influencer)"><br><br>
+
+<button onclick="signup()">Signup</button>
+
+<script>
+
+function signup(){
+
+fetch("http://localhost:5000/signup",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+name:document.getElementById("name").value,
+email:document.getElementById("email").value,
+password:document.getElementById("password").value,
+role:document.getElementById("role").value,
+price_per_hour:document.getElementById("price").value
+
+})
+
+})
+
+.then(res=>res.text())
+.then(data=>alert(data))
+
+}
+
+</script>
+
+</body>
+</html>
